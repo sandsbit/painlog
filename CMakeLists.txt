@@ -4,3 +4,4 @@ project(painlog C)
 set(CMAKE_C_STANDARD 11)
 
 add_library(painlog SHARED painlog/library.c)
+target_compile_definitions(painlog PRIVATE SHARED_EXPORT)
