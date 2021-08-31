@@ -57,6 +57,6 @@ extern logger_t *default_logger;
  *
  * @param app_name The name of your application. Cannot be longer then 255 characters.
  */
-SHARED_EXPORT void init_logging(const char *app_name);
+SHARED_PUBLIC void init_logging(const char *app_name);
 
 #endif //PAINLOG_STRUCTS_H

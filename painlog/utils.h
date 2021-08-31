@@ -21,23 +21,29 @@
 #ifndef PAINLOG_UTILS_H
 #define PAINLOG_UTILS_H
 
-#if defined(_WIN32) || defined(_WIN64) || defined(WIN32) || defined(WIN64)
-//  Microsoft
-    #if defined(BUILD_SHARED)
-        #define SHARED_EXPORT __declspec(dllexport)
+#if defined _WIN32 || defined __CYGWIN__
+    #ifdef BUILD_SHARED
+        #ifdef __GNUC__
+            #define SHARED_PUBLIC __attribute__ ((dllexport))
+        #else
+            #define SHARED_LOCAL __declspec(dllexport) // Note: actually gcc seems to also supports this syntax.
+        #endif
     #else
-        #define SHARED_EXPORT __declspec(dllimport)
+        #ifdef __GNUC__
+            #define SHARED_PUBLIC __attribute__ ((dllimport))
+        #else
+        #   define SHARED_LOCAL __declspec(dllimport) // Note: actually gcc seems to also supports this syntax.
+        #endif
     #endif
-#elif defined(__linux__) || defined(UNIX) || defined(__unix__) || defined(LINUX) || defined(__APPLE__)
-//  GCC
-    #if defined(BUILD_SHARED)
-        #define SHARED_EXPORT __attribute__((visibility("default")))
-    #else
-        #define SHARED_EXPORT
-    #endif
+    #define DLL_LOCAL
 #else
-#define SHARED_EXPORT
-#warning Unknown dynamic link import/export semantics.
+    #if __GNUC__ >= 4
+        #define SHARED_PUBLIC __attribute__ ((visibility ("default")))
+        #define SHARED_LOCAL  __attribute__ ((visibility ("hidden")))
+    #else
+        #define SHARED_PUBLIC
+        #define SHARED_LOCAL
+    #endif
 #endif
 
 #endif //PAINLOG_UTILS_H

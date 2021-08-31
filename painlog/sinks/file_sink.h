@@ -37,7 +37,7 @@ typedef struct {
  * @param fp file pointer.
  * @return pointer to file_sink_t struct in dynamic memory converted to logger_sink_t *.
  */
-SHARED_EXPORT logger_sink_t *create_fp_sink(FILE *fp);
+SHARED_PUBLIC logger_sink_t *create_fp_sink(FILE *fp);
 /**
  * Create logger sink for output in file.
  * Returns NULL on error.
@@ -45,7 +45,7 @@ SHARED_EXPORT logger_sink_t *create_fp_sink(FILE *fp);
  * @param path path to file.
  * @return pointer to file_sink_t struct in dynamic memory converted to logger_sink_t *.
  */
-SHARED_EXPORT logger_sink_t *create_file_sink(const char *path);
+SHARED_PUBLIC logger_sink_t *create_file_sink(const char *path);
 
 inline logger_sink_t *create_stdout_sink() {
     return create_fp_sink(stdout);
@@ -55,7 +55,7 @@ inline logger_sink_t *create_stderr_sink() {
     return create_fp_sink(stderr);
 }
 
-SHARED_EXPORT void log_file_sink(logger_sink_t *sink, logger_t *logger, log_level_t log_level, const char *message);
-SHARED_EXPORT void dispose_file_sink(logger_sink_t *sink);
+SHARED_LOCAL void log_file_sink(logger_sink_t *sink, logger_t *logger, log_level_t log_level, const char *message);
+SHARED_LOCAL void dispose_file_sink(logger_sink_t *sink);
 
 #endif //PAINLOG_FILE_SINK_H
