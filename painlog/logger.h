@@ -21,6 +21,38 @@
 #ifndef PAINLOG_LOGGER_H
 #define PAINLOG_LOGGER_H
 
-void hello(void);
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+typedef struct logger_struct logger_t;
+
+typedef enum {
+    FATAL = 5,
+    ERROR = 4,
+    WARNING = 3,
+    INFO = 2,
+    DEBUG = 1,
+    TRACE = 0,
+    ALL = 0
+} log_level_t;
+
+typedef struct {
+    void (*log_f)(logger_struct *logger, log_level_t log_level, const char *message);
+    void (*dispose)(void);
+} logger_sink_t;
+
+typedef struct logger_struct {
+    char *app_name;
+    char *logger_name;
+
+    char *logging_format;
+    log_level_t logging_level;
+    logger_sink_t **logger_sinks;
+} logger_t;
+
+#ifdef __cplusplus
+};
+#endif
 
 #endif //PAINLOG_LOGGER_H
