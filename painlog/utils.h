@@ -23,14 +23,14 @@
 
 #if defined(_WIN32) || defined(_WIN64) || defined(WIN32) || defined(WIN64)
 //  Microsoft
-    #if defined(SHARED_EXPORT)
+    #if defined(BUILD_SHARED)
         #define SHARED_EXPORT __declspec(dllexport)
     #else
         #define SHARED_EXPORT __declspec(dllimport)
     #endif
-#elif defined(__linux__) || defined(UNIX) || defined(__unix__) || defined(LINUX)
+#elif defined(__linux__) || defined(UNIX) || defined(__unix__) || defined(LINUX) || defined(__APPLE__)
 //  GCC
-    #if defined(SHARED_EXPORT)
+    #if defined(BUILD_SHARED)
         #define SHARED_EXPORT __attribute__((visibility("default")))
     #else
         #define SHARED_EXPORT
