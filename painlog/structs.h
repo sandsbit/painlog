@@ -18,8 +18,8 @@
  *  see <https://www.gnu.org/licenses/>.
  */
 
-#ifndef PAINLOG_LOGGER_H
-#define PAINLOG_LOGGER_H
+#ifndef PAINLOG_STRUCTS_H
+#define PAINLOG_STRUCTS_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -67,4 +67,4 @@ SHARED_EXPORT void init_logging(const char *app_name);
 };
 #endif
 
-#endif //PAINLOG_LOGGER_H
+#endif //PAINLOG_STRUCTS_H
