@@ -1,7 +1,7 @@
 /**
- * PAINLOG PROJECT
- * A logging library that isn't too simple, but, at the same time, isn't to much complicated.
- * https://github.com/sandsbit/painlog/
+ *  PAINLOG PROJECT
+ *  A logging library that isn't too simple, but, at the same time, isn't to much complicated.
+ *  https://github.com/sandsbit/painlog/
  *
  *  painlog is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU Lesser General Public License as
