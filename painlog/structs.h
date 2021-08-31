@@ -35,9 +35,9 @@ typedef enum {
     ALL = 0
 } log_level_t;
 
-typedef struct {
-    void (*log_f)(logger_t *logger, log_level_t log_level, const char *message);
-    void (*dispose)(void);
+typedef struct logger_sink_struct {
+    void (*log_f)(struct logger_sink_struct *sink, logger_t *logger, log_level_t log_level, const char *message);
+    void (*dispose)(struct logger_sink_struct *sink);
 } logger_sink_t;
 
 typedef struct logger_struct {

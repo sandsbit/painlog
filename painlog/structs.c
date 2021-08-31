@@ -24,6 +24,8 @@
 #include "stdio.h"
 #include "string.h"
 
+logger_t *default_logger = NULL;
+
 void init_logging(const char *app_name) {
     default_logger = (logger_t* ) malloc(sizeof(logger_t));
     if (default_logger == NULL)
