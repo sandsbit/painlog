@@ -21,10 +21,6 @@
 #ifndef PAINLOG_STRUCTS_H
 #define PAINLOG_STRUCTS_H
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 #include "utils.h"
 
 typedef struct logger_struct logger_t;
@@ -62,9 +58,5 @@ extern logger_t *default_logger;
  * @param app_name The name of your application. Cannot be longer then 255 characters.
  */
 SHARED_EXPORT void init_logging(const char *app_name);
-
-#ifdef __cplusplus
-};
-#endif
 
 #endif //PAINLOG_STRUCTS_H
