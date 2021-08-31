@@ -19,3 +19,20 @@
  */
 
 #include "logger.h"
+
+#include "stdlib.h"
+#include "stdio.h"
+#include "string.h"
+
+void init_logging(const char *app_name) {
+    default_logger = (logger_t* ) malloc(sizeof(logger_t));
+    if (default_logger == NULL)
+        fputs("ERROR: Cannot initialize default logger for painlog! (malloc returned NULL)", stderr);
+
+    default_logger->app_name = (char *) malloc(256);
+    if (default_logger->app_name == NULL) {
+        free(default_logger);
+        fputs("ERROR: Cannot initialize default logger for painlog! (malloc returned NULL for app name string)", stderr);
+    }
+    strcpy(default_logger->app_name, app_name);
+}

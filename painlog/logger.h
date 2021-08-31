@@ -25,6 +25,8 @@
 extern "C" {
 #endif
 
+#include "utils.h"
+
 typedef struct logger_struct logger_t;
 
 typedef enum {
@@ -38,7 +40,7 @@ typedef enum {
 } log_level_t;
 
 typedef struct {
-    void (*log_f)(logger_struct *logger, log_level_t log_level, const char *message);
+    void (*log_f)(logger_t *logger, log_level_t log_level, const char *message);
     void (*dispose)(void);
 } logger_sink_t;
 
@@ -50,6 +52,16 @@ typedef struct logger_struct {
     log_level_t logging_level;
     logger_sink_t **logger_sinks;
 } logger_t;
+
+extern logger_t *default_logger;
+
+/**
+ * Initialize default logger.
+ * Prints message to stderr on error.
+ *
+ * @param app_name The name of your application. Cannot be longer then 255 characters.
+ */
+SHARED_EXPORT void init_logging(const char *app_name);
 
 #ifdef __cplusplus
 };
